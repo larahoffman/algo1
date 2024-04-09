@@ -33,3 +33,15 @@ sumaDistintos x y z | (x /= y) && (x /= z) && (y /= z) = x + y + z
                     | (y /= z) && (x == z) = y + x
                     | (x == y) && (x == z) && (y == z) = 0
                     | otherwise = y + z
+digitoUnidades :: Integer -> Integer
+digitoUnidades x | (x >= 0) && (x < 10) = x
+                 | x >= 10 = mod x 10
+                 | otherwise = (-x)
+
+-- con la precondiciòn de que x >= 0
+digitoUnidades2 :: Integer -> Integer
+digitoUnidades2 x = mod x 10
+
+digitoDecenas :: Integer -> Integer
+digitoDecenas 10 = 1
+digitoDecenas x = digitoDecenas(digitoUnidades x) -- algo así
