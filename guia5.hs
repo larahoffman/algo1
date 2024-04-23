@@ -27,4 +27,9 @@ maximo (x:y:ys) | x >= y = maximo (x:ys)
 -- Ej 3.9
 ordenar :: [Int] -> [Int]
 ordenar [] = []
-ordenar (e:x:xs) 
+ordenar (e:x:xs)
+
+-- Ej 3.9
+ordenar :: [Int] -> [Int]
+ordenar [] = []
+ordenar xs = quitar (maximo xs) xs ++ maximo xs : [] -- incompleto
