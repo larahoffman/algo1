@@ -48,3 +48,12 @@ medioFact x | (x == 0 || x == 1) = 1
 -- un numero natural. Para esta funcion pueden utilizar div y mod.
 
 sumaDigitos :: Integer -> Integer
+sumaDigitos 0 = 0
+sumaDigitos n = mod n 10 + sumaDigitos (div n 10)
+
+-- Ej 7. Implementar la funcion todosDigitosIguales :: Integer -> Bool que determina si todos los digitos de un 
+-- numero natural son iguales
+
+todosDigitosIguales :: Integer -> Bool
+todosDigitosIguales n | n > 0 && n < 10 = True
+                      | otherwise = ultimoDigito n + primerDigito n + digitosMedio n
