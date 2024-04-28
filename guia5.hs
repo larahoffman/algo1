@@ -29,3 +29,19 @@ maximo (x:y:ys) | x >= y = maximo (x:ys)
 ordenar :: [Int] -> [Int]
 ordenar [] = []
 ordenar xs = ordenar ((quitar (maximo xs) xs)) ++ maximo xs : []
+
+-- 
+-- Ej 1.
+
+longitud :: [t] -> Int
+longitud [] = 0
+longitud (x:xs) = 1 + longitud xs
+
+ultimo :: [t] -> t
+ultimo [x] = x
+ultimo (x:xs) | longitud(xs) > 0 = ultimo xs
+
+principio :: [t] -> [t]
+principio [x] = [x]
+principio (x:xs:xss) | longitud(x:xs:xss) > 0 = principio (x:[])
+-- no se si estan pidiendo eso
