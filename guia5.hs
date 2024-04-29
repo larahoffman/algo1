@@ -41,12 +41,16 @@ ultimo :: [t] -> t
 ultimo [x] = x
 ultimo (x:xs) | longitud(xs) > 0 = ultimo xs
 
-principio :: [t] -> [t]
-principio [x] = [x]
-principio (x:xs:xss) | longitud(x:xs:xss) > 0 = principio (x:[])
--- no se si estan pidiendo eso
+eliminarNumero :: (Eq t) => [t] -> t -> [t]
+eliminarNumero [] _ = []
+eliminarNumero (x:xs) y | x == y = eliminarNumero xs y
+                        | otherwise = x : eliminarNumero xs y
 
-reverso :: [t] -> [t]
+principio :: (Eq t) => [t] -> [t]
+principio [x] = [x]
+principio (x:xs) = eliminarNumero (x:xs) (ultimo xs)
+
+reverso :: (Eq t) => [t] -> [t]
 reverso [] = []
 reverso [x] = [x]
-reverso (x:xs) = reverso(principio(ultimo xs :[])) -- faltaria un concat
+reverso (x:xs) = ultimo xs : reverso (eliminarNumero (x:xs) (ultimo xs))
