@@ -45,3 +45,8 @@ principio :: [t] -> [t]
 principio [x] = [x]
 principio (x:xs:xss) | longitud(x:xs:xss) > 0 = principio (x:[])
 -- no se si estan pidiendo eso
+
+reverso :: [t] -> [t]
+reverso [] = []
+reverso [x] = [x]
+reverso (x:xs) = reverso(principio(ultimo xs :[])) -- faltaria un concat
