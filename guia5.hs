@@ -1,16 +1,3 @@
--- Ej 3.3
-maximo :: [Int] -> Int
-maximo [x] = x
-maximo (x:y:ys) | x >= y = maximo (x:ys)
-                | otherwise = maximo (y:ys)
-
-
--- Ej 3.9
-ordenar :: [Int] -> [Int]
-ordenar [] = []
-ordenar xs = ordenar ((quitar (maximo xs) xs)) ++ maximo xs : []
-
--- 
 -- Ej 1.
 
 longitud :: [t] -> Int
@@ -93,3 +80,57 @@ capicua :: (Eq t) => [t] -> Bool
 capicua [] = True
 capicua xs = xs == reverso xs
 
+-- Ej 3
+
+-- Ej 3.1
+
+sumatoria :: [Integer] -> Integer
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
+
+-- Ej 3.2
+productoria :: [Integer] -> Integer
+productoria [] = 1
+productoria (x:xs) = x * productoria xs
+
+-- Ej 3.3
+maximo :: [Int] -> Int
+maximo [x] = x
+maximo (x:y:ys) | x >= y = maximo (x:ys)
+                | otherwise = maximo (y:ys)
+
+-- Ej 3.4 cada posicion de resultado contiene el valor que hay en esa posicion en s sumado n
+sumarN ::  Integer -> [Integer] -> [Integer]
+sumarN _ [] = []
+sumarN n (x:xs) = (x+n) : sumarN n xs
+
+-- Ej 3.5
+sumarElPrimero :: [Integer] -> [Integer]
+sumarElPrimero (x:xs) = sumarN x (x:xs)
+
+-- Ej 3.6
+sumarElUltimo :: [Integer] -> [Integer]
+sumarElUltimo (x:xs) = sumarN (ultimo (x:xs)) (x:xs)
+
+-- Ej 3.7
+pares :: [Integer] -> [Integer]
+pares [] = []
+pares (x:xs) | esPar x = x : pares xs
+             | otherwise = pares xs
+
+esPar :: Integer -> Bool
+esPar n = mod n 2 == 0
+
+-- Ej 3.8 Dado un numero n y una lista xs, devuelve una lista con los elementos de xs multiplos de n
+multiplosDeN :: Integer -> [Integer] -> [Integer]
+multiplosDeN _ [] = []
+multiplosDeN n (x:xs) | esMultiplo x n = x : multiplosDeN n xs
+                      | otherwise = multiplosDeN n xs
+
+esMultiplo :: Integer -> Integer -> Bool
+esMultiplo x n = mod x n == 0
+
+-- Ej 3.9 ordena los elementos de la lista en forma creciente
+ordenar :: [Int] -> [Int]
+ordenar [] = []
+ordenar xs = ordenar ((quitar (maximo xs) xs)) ++ maximo xs : []
