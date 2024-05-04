@@ -134,3 +134,12 @@ esMultiplo x n = mod x n == 0
 ordenar :: [Int] -> [Int]
 ordenar [] = []
 ordenar xs = ordenar ((quitar (maximo xs) xs)) ++ maximo xs : []
+
+-- Ej 4. Palabra = secuencia de caracteres sin blancos
+
+-- Ej 4.a. Reemplaza cada subsecuencia de blancos contiguos de la primera lista por un solo blanco en la lista resultado
+sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos (x:[]) = [x]
+sacarBlancosRepetidos (x:y:ys) | x == y && y == ' ' = sacarBlancosRepetidos (x:ys)
+                             | otherwise = x : sacarBlancosRepetidos (y:ys)
