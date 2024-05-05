@@ -22,6 +22,10 @@ reverso [] = []
 reverso [x] = [x]
 reverso (x:xs) = ultimo xs : reverso (eliminarNumero (x:xs) (ultimo xs))
 
+reverse' :: [a] -> [a]
+reverse' [] = []
+reverse' (x:xs) = reverse' xs ++ [x] --mejor, funciona para capicua
+
 -- Ej 2.
 
 -- Ej 2.1
@@ -78,7 +82,7 @@ estaContenida (x:xs) ys = pertenece x ys && estaContenida xs ys
 -- Ej 2.9
 capicua :: (Eq t) => [t] -> Bool
 capicua [] = True
-capicua xs = xs == reverso xs
+capicua xs = xs == reverse' xs
 
 -- Ej 3
 
@@ -142,4 +146,27 @@ sacarBlancosRepetidos :: [Char] -> [Char]
 sacarBlancosRepetidos [] = []
 sacarBlancosRepetidos (x:[]) = [x]
 sacarBlancosRepetidos (x:y:ys) | x == y && y == ' ' = sacarBlancosRepetidos (x:ys)
-                             | otherwise = x : sacarBlancosRepetidos (y:ys)
+                               | otherwise = x : sacarBlancosRepetidos (y:ys)
+
+-- Ej 4.b. Dada una lista de caracteres devuelve la cantidad de palabras que tiene
+contarPalabras :: [Char] -> Integer
+contarPalabras [] = 0
+contarPalabras (x:xs) = contarEspacios (sacarEspaciosIniFin (sacarBlancosRepetidos xs)) + 1
+
+contarEspacios :: [Char] -> Integer
+contarEspacios [] = 0
+contarEspacios (x:xs) | x == ' ' = 1 + contarEspacios xs
+                      | otherwise = contarEspacios xs
+
+sacarEspaciosIniFin :: [Char] -> [Char]
+sacarEspaciosIniFin [] = []
+sacarEspaciosIniFin (x:xs) | x == ' ' = sacarEspacioFin xs
+                           | otherwise = x : sacarEspacioFin xs
+
+sacarEspacioFin :: [Char] -> [Char]
+sacarEspacioFin [] = []
+sacarEspacioFin [x] | x == ' ' = []
+                    | otherwise = [x]
+sacarEspacioFin (x:xs) | x == ' ' = x : sacarEspacioFin xs
+                       | otherwise = sacarEspacioFin xs
+
