@@ -188,3 +188,8 @@ sacarPrimeraPalabra [] = []
 sacarPrimeraPalabra (x:xs) | x == ' ' = xs
                            | otherwise = sacarPrimeraPalabra xs
 
+-- Ej 4.d Dada una lista de caracteres devuelve su palabra m´as larga
+palabraMasLarga :: [Char] -> [Char]
+
+-- Ej 4.e A partir de una lista de palabras arma una lista de caracteres concatenandolas
+aplanar :: [[Char]] -> [Char]
