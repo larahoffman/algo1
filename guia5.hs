@@ -170,3 +170,21 @@ sacarEspacioFin [x] | x == ' ' = []
 sacarEspacioFin (x:xs) | x == ' ' = x : sacarEspacioFin xs
                        | otherwise = sacarEspacioFin xs
 
+-- Ej 4.c. Dada una lista arma una nueva lista con las palabras de la lista original
+palabras :: [Char] -> [[Char]]
+palabras xs = palabrasAux (sacarEspaciosIniFin (sacarBlancosRepetidos xs))
+
+palabrasAux :: [Char] -> [[Char]]
+palabrasAux [] = []
+palabrasAux (x:xs) = primeraPalabra (x:xs) : (palabrasAux (sacarPrimeraPalabra (x:xs)))
+
+primeraPalabra :: [Char] -> [Char]
+primeraPalabra [] = []
+primeraPalabra (x:xs) | x == ' ' = []
+                      | otherwise = x : (primeraPalabra xs)
+
+sacarPrimeraPalabra :: [Char] -> [Char]
+sacarPrimeraPalabra [] = []
+sacarPrimeraPalabra (x:xs) | x == ' ' = xs
+                           | otherwise = sacarPrimeraPalabra xs
+
