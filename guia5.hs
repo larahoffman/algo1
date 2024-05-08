@@ -13,9 +13,13 @@ eliminarNumero [] _ = []
 eliminarNumero (x:xs) y | x == y = eliminarNumero xs y
                         | otherwise = x : eliminarNumero xs y
 
-principio :: (Eq t) => [t] -> [t]
-principio [x] = [x]
-principio (x:xs) = eliminarNumero (x:xs) (ultimo xs)
+-- principio :: (Eq t) => [t] -> [t]
+-- principio [x] = [x]
+-- principio (x:xs) = eliminarNumero (x:xs) (ultimo xs)
+principio :: [t] -> [t]
+principio (x:[]) = []
+principio (x:xs) = x : principio xs
+
 
 reverso :: (Eq t) => [t] -> [t]
 reverso [] = []
@@ -40,12 +44,20 @@ todosIguales [] = True
 todosIguales [x] = True
 todosIguales (x:xs) = x == head xs && todosIguales xs
 
+todosIguales2 :: (Eq t) => [t] -> Bool
+todosIguales2 [] = True
+todosIguales2 [x] = True
+todosIguales2 (x:y:ys) = x == y && todosIguales2 ys
+
 -- Ej 2.3 El resultado es falso si existen dos posiciones distintas de s con igual valor
 todosDistintos :: (Eq t) => [t] -> Bool
 todosDistintos [] = True
 todosDistintos [x] = True
 todosDistintos (x:xs) | pertenece x xs = False
                       | otherwise = todosDistintos xs
+
+todosDistintos2 :: (Eq t) => [t] -> Bool
+todosDistintos2 xs = not(todosIguales xs)
 
 -- Ej 2.4
 hayRepetidos :: (Eq t) => [t] -> Bool
@@ -189,7 +201,12 @@ sacarPrimeraPalabra (x:xs) | x == ' ' = xs
                            | otherwise = sacarPrimeraPalabra xs
 
 -- Ej 4.d Dada una lista de caracteres devuelve su palabra m´as larga
-palabraMasLarga :: [Char] -> [Char]
+--palabraMasLarga :: [Char] -> [Char]
 
 -- Ej 4.e A partir de una lista de palabras arma una lista de caracteres concatenandolas
-aplanar :: [[Char]] -> [Char]
+--aplanar :: [[Char]] -> [Char]
+
+-- 
+elementoEnPosicion :: [t] -> Int -> t
+elementoEnPosicion (x:_) 0 = x
+elementoEnPosicion (_:xs) n = elementoEnPosicion xs (n - 1)
