@@ -1,1 +1,1 @@
-# haskell
+# Ejercicios resueltos de las guías y parciales de Haskell & Python
