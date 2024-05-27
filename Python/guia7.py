@@ -3,17 +3,17 @@
 def pertenece(s:list[int], e: int) -> bool:
     i: int = 0
     longitud: int = len(s)
-
+    resultado: bool = False
+    
     while (i < longitud):
         valor: int = s[i]
-        resultado: bool = False
 
         if (e == valor):
             resultado = True
         i += 1
 
     return resultado
-# revisarlo
+
 #print(pertenece([1,3,2,3], 4))
 
 def pertenece2(s:list[int], e:int) -> bool:
