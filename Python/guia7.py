@@ -34,7 +34,7 @@ def divide_a_todos(s:list[int], e:int) -> bool:
             divide = False
     return divide
 
-print(divide_a_todos([1,4,4], 1))
+#print(divide_a_todos([1,4,4], 1))
 
 # Ejercicio 1.3
 
@@ -51,6 +51,23 @@ def suma_total(s:list[int]) -> int:
     return total
 
 #print(suma_total([1,2,3]))
+
+# Ejercicio 1.4
+def ordenados(s:list[int]) -> bool:
+    longitud: int = len(s)
+    i: int = 0
+    j: int = 0
+    ordenado:bool = False
+
+    while i < longitud:
+        if s[i] <= s[j]:
+            ordenado = True
+        i += 1
+        j += 1
+    return ordenado
+
+ordenados([3,2,4])
+
 
 # Ejercicio 1.7 Fortaleza de una contraseña
 def ver_fortaleza_contrasenia(contrasenia:str) -> str:
