@@ -14,7 +14,7 @@ def pertenece(s:list[int], e: int) -> bool:
 
     return resultado
 
-print(pertenece([1,3,2,3], 4))
+#print(pertenece([1,3,2,3], 4))
 
 def pertenece2(s:list[int], e:int) -> bool:
     resultado: bool = False
@@ -23,9 +23,20 @@ def pertenece2(s:list[int], e:int) -> bool:
             resultado = True
     return resultado
 
-print(pertenece2([1,3,2,3], 1))
+#print(pertenece2([1,3,2,3], 1))
 
-#Ejercicio 1.3
+# Ejercicio 1.2
+def divide_a_todos(s:list[int], e:int) -> bool:
+    divide:bool = True
+
+    for numero in s:
+        if not(numero % e == 0):
+            divide = False
+    return divide
+
+print(divide_a_todos([1,4,4], 1))
+
+# Ejercicio 1.3
 
 def suma_total(s:list[int]) -> int:
     total:int = 0
