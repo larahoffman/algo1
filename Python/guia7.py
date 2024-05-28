@@ -80,6 +80,7 @@ def mas_de_siete_caracteres(s:list[str]) -> bool:
 
 #print(mas_de_siete_caracteres(["hola", "pepee"]))
 
+# Ejercicio 1.6
 def es_palindromo(texto: str) -> bool:
     pass
 
