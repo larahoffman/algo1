@@ -68,6 +68,20 @@ def ordenados(s:list[int]) -> bool:
 
 ordenados([3,2,4])
 
+# Ejercicio 1.5. Dada una lista de palabras, devolver verdadero si alguna palabra tiene longitud mayor a 7
+def mas_de_siete_caracteres(s:list[str]) -> bool:
+    mas_de_siete:bool = False
+
+    for palabra in s:
+        longitud_palabra:int = len(palabra)
+        if longitud_palabra > 7:
+            mas_de_siete = True
+    return mas_de_siete
+
+#print(mas_de_siete_caracteres(["hola", "pepee"]))
+
+def es_palindromo(texto: str) -> bool:
+    pass
 
 # Ejercicio 1.7 Fortaleza de una contraseña
 def ver_fortaleza_contrasenia(contrasenia:str) -> str:
@@ -116,7 +130,7 @@ def reemplaza_pares_for(s:list[int]) -> None:
 
 lista = [3,5,6]
 reemplaza_pares_for(lista)
-print(f"Lista nueva: {lista}")
+#print(f"Lista nueva: {lista}")
 
 # Ejercicio 5.2
 def pertenece_a_cada_uno_version_2(s:list[list[int]], e:int, res:list[bool]) -> None:
