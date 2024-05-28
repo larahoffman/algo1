@@ -101,22 +101,6 @@ def reemplaza_pares(s:list[int]) -> None:
             s[i] = 0
         i += 1
 
-def reemplaza_pares2(s:list[int]) -> No# Clase 27-05
-# https://pastebin.com/xabaQTyv
-# Ejercicio 2.1
-
-def es_par(n:int) -> bool:
-    return (n % 2 == 0)
-
-def reemplaza_pares(s:list[int]) -> None:
-    i:int = 0
-    longitud:int = len(s)
-
-    while i < longitud:
-        if (es_par(i)):
-            s[i] = 0
-        i += 1
-
 def reemplaza_pares2(s:list[int]) -> None:
     i:int = 0
     longitud:int = len(s)
@@ -145,42 +129,4 @@ def pertenece_a_cada_uno_version_2(s:list[list[int]], e:int, res:list[bool]) -> 
     #        res.append(False)
         res.append(pertenece2(valor, e))
 
-s = [[5,6], [2], [1,2]]
-res = []
 
-pertenece_a_cada_uno_version_2(s, 5, res)
-
-print(f"Resultado: {res}")ne:
-    i:int = 0
-    longitud:int = len(s)
-
-    while i < longitud:
-        s[i] = 0
-        i += 2
-
-def reemplaza_pares_for(s:list[int]) -> None:
-    for i in range(0, len(s), 2):
-        s[i] = 0
-        
-
-lista = [3,5,6]
-reemplaza_pares_for(lista)
-print(f"Lista nueva: {lista}")
-
-# Ejercicio 5.2
-def pertenece_a_cada_uno_version_2(s:list[list[int]], e:int, res:list[bool]) -> None:
-    res.clear() # recomendado hacer siempre para variables de tipo out
-
-    for valor in s:
-    #    if pertenece(valor,e):
-    #        res.append(True)
-    #    else:
-    #        res.append(False)
-        res.append(pertenece2(valor, e))
-
-s = [[5,6], [2], [1,2]]
-res = []
-
-pertenece_a_cada_uno_version_2(s, 5, res)
-
-print(f"Resultado: {res}")
