@@ -21,6 +21,15 @@ def factorial_de_dos() -> int:
     factorial2:int = math.factorial(2)
     return factorial2
 
+# opcion 2
+def factorial_2_bis() -> int:
+    n:int = 2
+    factorial:int = 1
+
+    for nro in range(1, n + 1):
+        factorial = factorial * nro
+    return factorial
+
 # 1.5
 # perímetro de la circunferencia de radio 1
 def perimetro() -> None:
@@ -32,7 +41,28 @@ def perimetro() -> None:
 
 # 2.1
 def imprimir_saludo(nombre:str):
-    pass
+    print(f"Hola {nombre}")
+
+#imprimir_saludo("Pepe")
+
+# 2.2
+def raiz_cuadrada_de(numero:int)-> float:
+    return math.sqrt(numero)
+
+#print(raiz_cuadrada_de(8))
+
+# 2.3 Convierte una temperatura en grados Fahrenheit a grados Celcius
+def farenheit_a_celsius(temp_far:float) -> float:
+    resultado:float = ((temp_far - 32) * 5) / 9
+    return resultado
+
+#print(farenheit_a_celsius(400.0))
+
+# 2.4
+def imprimir_dos_veces(estribillo: str) -> None:
+    print(estribillo * 2)
+
+#imprimir_dos_veces("Oh-oh-oh-oh-oh, oh-oh-oh-oh, oh-oh-oh\nCaught in a bad romance\nOh-oh-oh-oh-oh, oh-oh-oh-oh, oh-oh-oh\nCaught in a bad romance\n")
 
 # 2.5
 def es_multiplo_de(n: int, m:int) -> bool:
@@ -46,6 +76,21 @@ def es_multiplo_de(n: int, m:int) -> bool:
         return True
     else:
         return False
+
+# 2.6 usar funcion del ej 2.5
+def es_par(numero:int) -> bool:
+    resultado:bool = es_multiplo_de(numero, 2)
+    return resultado
+
+# print(es_par(15))
+# print(es_par(16))
+
+# 2.7
+def cantidad_de_pizzas(comensales:int, min_cant_de_porciones:int) -> int:
+    cant_pizzas:int = (comensales * min_cant_de_porciones) // 8
+    return math.ceil(cant_pizzas)
+#ceil devuelve el entero mas cercano
+#print(cantidad_de_pizzas(13,5))
 
 # Ejercicio 3
 
