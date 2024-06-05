@@ -122,7 +122,32 @@ def es_bisiesto(anio) -> bool:
     condicion:bool = es_multiplo_de(anio, 400) or (es_multiplo_de(anio, 4) and not(es_multiplo_de(anio, 100)))
     return condicion
 
-print(es_bisiesto(2021))
+#print(es_bisiesto(2021))
+
+# Ejercicio 4. Resolver usando min y max
+
+# 4.1
+def peso_pino(altura:int) -> int:
+    peso:int = 0
+
+    if altura > 0 and altura <= 3:
+        peso = (altura * 100) * 3
+    else:
+        peso += (300 * 3) + ((altura - 3) * 100) * 2
+
+    return peso
+
+# 4.2
+def es_peso_util(peso:int) -> bool:
+    rango:list = range(400, 1001)
+    resultado:bool = False
+
+    if peso in rango:
+        resultado = True
+    return resultado
+
+print(es_peso_util(8000))
+
 
 # Ejercicio 5
 
