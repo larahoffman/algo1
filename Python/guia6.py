@@ -146,8 +146,14 @@ def es_peso_util(peso:int) -> bool:
         resultado = True
     return resultado
 
-print(es_peso_util(8000))
+#print(peso_pino(1)) 300kg
+#print(es_peso_util(800)) True
 
+# 4.3
+def sirve_pino(altura:int) -> bool:
+    return es_peso_util(peso_pino(altura))
+
+#print(sirve_pino(1)) False
 
 # Ejercicio 5
 
