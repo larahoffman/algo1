@@ -224,7 +224,16 @@ def vacaciones_o_trabajo(sexo:str, edad:int) -> None:
 # vacaciones_o_trabajo("M",61)
 # vacaciones_o_trabajo("F",78)
 
-# Ejercicio 6
+# Ejercicio 6 con while
+
+# 6.1
+def imprimir_1_al_10() -> None:
+    numero:int = 1
+    while(numero <= 10):
+        print(numero)
+        numero += 1
+
+#imprimir_1_al_10()
 
 # 6.2 Escribir una función que imprima los números pares entre el 10 y el 40
 def imprimir_pares_10_40() -> None:
@@ -232,6 +241,16 @@ def imprimir_pares_10_40() -> None:
     while(numero <= 40):
         print(numero)
         numero = numero + 2
+
+# 6.3
+def imprimir_eco() -> None:
+    indice:int = 0
+
+    while(indice < 10):
+        print("eco")
+        indice += 1
+
+imprimir_eco()
 
 # 6.4 Escribir una función de cuenta regresiva para lanzar un cohete. Dicha función ira imprimiendo desde el numero que me pasan por parametro (que sera positivo) 
 # hasta el 1, y por ultimo “Despegue”
