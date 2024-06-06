@@ -164,6 +164,66 @@ def devolver_el_doble_si_es_par(numero:int) -> int:
         numero = 2 * numero
     return numero
 
+# 5.2
+def devolver_valor_si_es_par_sino_el_que_sigue(numero:int) -> int:
+    if es_par(numero):
+        return numero
+    else:
+        return numero + 1
+
+#print(devolver_valor_si_es_par_sino_el_que_sigue(3))
+
+# 5.3
+def devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(numero:int) -> int:
+    multiplo3:bool = numero % 3 == 0
+    multiplo9:bool = numero % 9 == 0
+
+    if multiplo9:
+        return numero * 3
+    elif multiplo3:
+        return numero * 2
+    else:
+        return numero
+
+# print(devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(4))
+# print(devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(6))
+# print(devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(18))
+# print(devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(15))
+
+# 5.4
+def lindo_nombre(nombre:str) -> str:
+    if len(nombre) >= 5:
+        return "Tu nombre tiene muchas letras!"
+    else:
+        return "Tu nombre tiene menos de 5 caracteres"
+
+# 5.5
+def elRango(numero:int) -> None:
+    if numero < 5:
+        print("Menor a 5")
+    elif numero >= 10 and numero <= 20:
+        print("Entre 10 y 20")
+    elif numero > 20:
+        print("Mayor a 20")
+
+# elRango(5) para los numeros entre el 5 y el 9 no hace nada
+
+# 5.6
+def vacaciones_o_trabajo(sexo:str, edad:int) -> None:
+    menor_edad:bool = edad < 18
+    jubilada_F:bool = sexo == 'F' and edad >= 60
+    jubilado_M:bool = sexo == 'M' and edad >= 65
+
+    if menor_edad or jubilada_F or jubilado_M:
+        print("Anda de vacaciones")
+    else:
+        print("Te toca trabajar")
+
+# vacaciones_o_trabajo("M",15)
+# vacaciones_o_trabajo("F",34)
+# vacaciones_o_trabajo("M",61)
+# vacaciones_o_trabajo("F",78)
+
 # Ejercicio 6
 
 # 6.2 Escribir una función que imprima los números pares entre el 10 y el 40
