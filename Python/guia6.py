@@ -250,7 +250,7 @@ def imprimir_eco() -> None:
         print("eco")
         indice += 1
 
-imprimir_eco()
+#imprimir_eco()
 
 # 6.4 Escribir una función de cuenta regresiva para lanzar un cohete. Dicha función ira imprimiendo desde el numero que me pasan por parametro (que sera positivo) 
 # hasta el 1, y por ultimo “Despegue”
@@ -266,3 +266,30 @@ def cuenta_regresiva(numero:int) -> str:
     #     print(i)
     print("Despegue")
     
+# Ejercicio 7 con for
+
+# 7.1
+def imprimir_1_al_10_for() -> None:
+    for numero in range(1,11):
+        print(numero)
+
+#imprimir_1_al_10_for()
+
+# 7.2
+def imprimir_pares_10_40_for() -> None:
+    for par in range(10,41,2):
+        print(par)
+
+# 7.3
+def imprimir_eco_for() -> None:
+    for _ in range(1,11):
+        print("eco")
+
+#imprimir_eco_for()
+
+# 7.5
+def monitorear_viaje_tiempo_for(partida:int, llegada:int) -> None:
+    for anio in range(partida, llegada, -1):
+        print(f"Viajó un año al pasado, estamos en el año: {anio}")
+
+#monitorear_viaje_tiempo_for(2015,1989)
