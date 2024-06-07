@@ -52,21 +52,15 @@ def suma_total(s:list[int]) -> int:
 
 #print(suma_total([1,2,3]))
 
-# Ejercicio 1.4
-def ordenados(s:list[int]) -> bool:
-    longitud: int = len(s)
-    i: int = 0
-    j: int = 0
-    ordenado:bool = False
+#Ejercicio 1.4
+def ordenados(seq:list[int])->bool:
+    for i in range(0,len(seq)-1):
+        if (not(seq[i]<seq[i+1])):
+            return False
+    return True
 
-    while i < longitud:
-        if s[i] <= s[j]:
-            ordenado = True
-        i += 1
-        j += 1
-    return ordenado
 
-ordenados([3,2,4])
+#print(ordenados([3,2,4]))
 
 # Ejercicio 1.5. Dada una lista de palabras, devolver verdadero si alguna palabra tiene longitud mayor a 7
 def mas_de_siete_caracteres(s:list[str]) -> bool:
@@ -78,11 +72,21 @@ def mas_de_siete_caracteres(s:list[str]) -> bool:
             mas_de_siete = True
     return mas_de_siete
 
-#print(mas_de_siete_caracteres(["hola", "pepee"]))
+#print(mas_de_siete_caracteres(["hola", "pepeeeeeee"]))
 
-# Ejercicio 1.6
-def es_palindromo(texto: str) -> bool:
-    pass
+
+def es_palindromo(texto:str)->bool:
+    longitud:int=len(texto)
+    for i in range(0,longitud // 2):
+        if texto[i] != " ":
+            if(texto[i]!=texto[(longitud-1)-i]):
+                return False
+    return True
+
+# print(es_palindromo("neuquen"))
+# print(es_palindromo("ojo rojo"))
+# print(es_palindromo("hola"))
+# print(es_palindromo("dabale arroz a la zorra el abad")) este no funciona
 
 # Ejercicio 1.7 Fortaleza de una contraseña
 def ver_fortaleza_contrasenia(contrasenia:str) -> str:
@@ -100,14 +104,57 @@ def ver_fortaleza_contrasenia(contrasenia:str) -> str:
 
     return valor
 
+# Ejercicio 1.8 Dada una lista de tuplas, que representa un historial de movimientos en una cuenta bancaria, devolver el saldo actual.
+def saldo_actual(movimientos:list[tuple]) -> int:
+    saldo:int = 0
+    ingreso:str = 'I'
+    retiro:str = 'R'
+
+    for i in range(0, len(movimientos)):
+        if movimientos[i][0] == ingreso:
+            saldo += movimientos[i][1]
+        elif movimientos[i][0] == retiro:
+            saldo -= movimientos[i][1]
+    return saldo
+# otra manera
+def saldo_actual_PM(movimientos: list[tuple[str, int]]) -> int:
+    saldo:int = 0
+    for tipo_movimiento, dinero in movimientos:
+        if tipo_movimiento == 'I':
+            saldo += dinero
+        elif tipo_movimiento == 'R':
+            saldo -= dinero
+    return saldo
+
+#print(saldo_actual([('I', 2000), ('R', 20), ('R', 1000), ('I', 300)])) da 1280
+
+# Ejercicio 1.9 Recorrer una palabra en formato string y devolver True si esta tiene al menos 3 vocales distintas y False en caso contrario
+def tiene_tres_vocales_distintas(palabra: str) -> bool:
+    vocales = "aeiouAEIOU"
+    vocales_encontradas = []
+    resultado:bool = False
+
+    for letra in palabra:
+        if letra in vocales and letra not in vocales_encontradas:
+            vocales_encontradas.append(letra)
+        if len(vocales_encontradas) >= 3:
+            resultado = True
+
+    return resultado
+
+# print(tiene_tres_vocales_distintas("pepe"))
+# print(tiene_tres_vocales_distintas("murcielago"))
+# print(tiene_tres_vocales_distintas("aereo"))
+
 # Clase 27-05
 # https://pastebin.com/xabaQTyv
-# Ejercicio 2.1
+
+# Ejercicio 2.1 La lista es de tipo inout
 
 def es_par(n:int) -> bool:
     return (n % 2 == 0)
 
-def reemplaza_pares(s:list[int]) -> None:
+def reemplaza_posiciones_pares(s:list[int]) -> list[int]:
     i:int = 0
     longitud:int = len(s)
 
@@ -115,23 +162,70 @@ def reemplaza_pares(s:list[int]) -> None:
         if (es_par(i)):
             s[i] = 0
         i += 1
+    
+    return s
 
-def reemplaza_pares2(s:list[int]) -> None:
+def reemplaza_posiciones_pares2(s:list[int]) -> list[int]:
     i:int = 0
     longitud:int = len(s)
 
     while i < longitud:
         s[i] = 0
         i += 2
+    return s
 
-def reemplaza_pares_for(s:list[int]) -> None:
+def reemplaza_posiciones_pares_for(s:list[int]) -> list[int]:
     for i in range(0, len(s), 2):
         s[i] = 0
+    return s
         
 
-lista = [3,5,6]
-reemplaza_pares_for(lista)
+# lista = [3,5,6]
+# reemplaza_posiciones_pares_for(lista)
 #print(f"Lista nueva: {lista}")
+
+# Ejercicio 2.2 La lista es de tipo in (no se puede modificar)
+def reemplaza_posiciones_pares_for_in(s:list[int]) -> list[int]:
+    lista:list[int] = []
+    for i in range(0, len(s)):
+        if es_par(i):
+            lista.append(0)
+        else:
+            lista.append(s[i])
+    return lista
+
+# lista = [3,5,6,5,5,7,2,1]
+# print(reemplaza_posiciones_pares_for_in(lista)) -> [0, 5, 0, 5, 0, 7, 0, 1]
+# print(lista) -> [3, 5, 6, 5, 5, 7, 2, 1]
+
+# Ejercicio 2.3
+def sin_vocales(cadena:str) -> str:
+    vocales:str = "aeiouAEIOU"
+    lista:str = ""
+
+    for i in range(0, len(cadena)):
+        caracter:str = cadena[i]
+        if caracter not in vocales:
+            lista += caracter
+    return lista
+
+# cadena = "Habia una vez"
+# print(sin_vocales(cadena))
+
+# Ejercicio 2.4
+def reemplaza_vocales(s:list[chr]) -> list[chr]:
+    vocales:str = "aeiouAEIOU"
+    lista:list[chr] = []
+
+    for i in range(0, len(s)):
+        caracter:str = s[i]
+        if caracter not in vocales:
+            lista.append(caracter)
+        else:
+            lista.append('')
+    return lista
+
+#print(reemplaza_vocales(['a', 'b', 'c', 'd', 'e']))
 
 # Ejercicio 5.2
 def pertenece_a_cada_uno_version_2(s:list[list[int]], e:int, res:list[bool]) -> None:
