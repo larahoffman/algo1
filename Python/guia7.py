@@ -380,7 +380,7 @@ def transponer_matriz(matriz: list[list[int]]) -> list[list[int]]:
     num_filas = len(matriz)
     num_columnas = len(matriz[0])
     
-    # Crea una nueva matriz de tamaño num_columnas x num_filas
+    # Crea una nueva matriz de tamaño num_columnas x num_filas (en vez de m x n -> n x m)
     matriz_transpuesta = []
     for _ in range(num_columnas):
         matriz_transpuesta.append([])
@@ -389,7 +389,7 @@ def transponer_matriz(matriz: list[list[int]]) -> list[list[int]]:
     for fila in range(num_filas):
         for columna in range(num_columnas):
             matriz_transpuesta[columna].append(matriz[fila][columna])
-            
+
     return matriz_transpuesta
 
-print(transponer_matriz(matriz))
+#print(transponer_matriz(matriz))
