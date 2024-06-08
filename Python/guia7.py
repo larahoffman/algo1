@@ -313,15 +313,47 @@ def historial_monedero_electronico() -> list[tuple[str, int]]:
 
 #print(historial_monedero_electronico())
 
+# Ejercicio 5
+
+# Ejercicio 5.1
+def pertenece_a_cada_uno_version_1(s:list[list[int]], e:int, res:list[bool]) -> None:
+    
+    for valor in s:
+        res.append(pertenece2(valor, e))
+    print(res)
+
+#pertenece_a_cada_uno_version_1([[1,2,3,4], [4,5], [3,3]], 4, [True, False])
+
+# La diferencia esta en limpiar res al principio ?
+
 # Ejercicio 5.2
 def pertenece_a_cada_uno_version_2(s:list[list[int]], e:int, res:list[bool]) -> None:
-    res.clear() # recomendado hacer siempre para variables de tipo out
+    res.clear() # recomendado hacer siempre para variables de tipo out -> tambien se puede hacer res = []
 
     for valor in s:
-    #    if pertenece(valor,e):
-    #        res.append(True)
-    #    else:
-    #        res.append(False)
         res.append(pertenece2(valor, e))
 
+# Ejercicio 5.3
+def es_matriz(m: list[list[int]]) -> bool:
+    
+    longitud_fila = len(m[0])
+    for fila in m:
+        if len(fila) != longitud_fila:
+            return False
+    return True
+#print(es_matriz([[1, 2, 3], [4, 5, 6], [7, 8]])) False
+# print(es_matriz([[1,2,3], [4,5,6]])) True
+# print(es_matriz([[1,2],[3,5,6],[4,3]])) False
+
+# Ejercicio 5.4
+def filas_ordenadas(m:list[list[int]], res: list[bool]) -> None:
+    res = []
+    for fila in m:
+        valor:bool = False
+        if ordenados(fila):
+            valor = True
+        res.append(valor)
+    print(res)
+# filas_ordenadas([[1,2,3], [4,5,6]], [True,False])
+# filas_ordenadas([[4,2,3], [4,5,6], [2,1,6], [9,9,10]], [True,False])
 
