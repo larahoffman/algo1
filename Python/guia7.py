@@ -357,3 +357,39 @@ def filas_ordenadas(m:list[list[int]], res: list[bool]) -> None:
 # filas_ordenadas([[1,2,3], [4,5,6]], [True,False])
 # filas_ordenadas([[4,2,3], [4,5,6], [2,1,6], [9,9,10]], [True,False])
 
+# Ejercicios inventados por mi
+def recorrer_filas(matriz:list[list[int]]) -> None:
+    '''Las filas son los elementos de la lista de listas'''
+    for fila in matriz:
+        print(fila)
+
+matriz = [[4,2,3], [4,5,6], [2,1,6], [9,9,10]]
+#recorrer_filas(matriz)
+
+def recorrer_columnas(matriz:list[list[int]]) -> None:
+    num_filas = len(matriz)
+    num_columnas = len(matriz[0])
+
+    for columna in range(num_columnas):
+        for fila in range(num_filas):
+            print(matriz[fila][columna])
+
+#recorrer_columnas(matriz)
+
+def transponer_matriz(matriz: list[list[int]]) -> list[list[int]]:
+    num_filas = len(matriz)
+    num_columnas = len(matriz[0])
+    
+    # Crea una nueva matriz de tamaño num_columnas x num_filas
+    matriz_transpuesta = []
+    for _ in range(num_columnas):
+        matriz_transpuesta.append([])
+    print(matriz_transpuesta)
+    
+    for fila in range(num_filas):
+        for columna in range(num_columnas):
+            matriz_transpuesta[columna].append(matriz[fila][columna])
+            
+    return matriz_transpuesta
+
+print(transponer_matriz(matriz))
