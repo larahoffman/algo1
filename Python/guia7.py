@@ -249,6 +249,27 @@ def reverso(s:list[int]) -> list[int]:
 
 #print(reverso([1,2,3,4]))
 
+# Ejercicio 3
+def aprobado(notas:list[int]) -> int:
+    longitud:int = len(notas)
+    promedio:int = suma_total(notas) // longitud
+    resultado:int = 0
+
+    for nota in notas:
+        if nota >= 4:
+            if promedio >= 7:
+                resultado = 1
+            elif promedio >= 4 and promedio < 7:
+                resultado = 2
+        else:
+            resultado = 3
+    return resultado
+
+# print(aprobado([4,6,7,6,9,10]))
+# print(aprobado([1,4,7,8,2]))
+# print(aprobado([4,4,4,4,4]))
+
+
 # Ejercicio 2.6
 def eliminar_repetidos(s:list[chr]) -> list[chr]:
     lista_nueva:list[chr] = []
