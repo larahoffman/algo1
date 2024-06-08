@@ -249,6 +249,18 @@ def reverso(s:list[int]) -> list[int]:
 
 #print(reverso([1,2,3,4]))
 
+# Ejercicio 2.6
+def eliminar_repetidos(s:list[chr]) -> list[chr]:
+    lista_nueva:list[chr] = []
+    longitud:int = len(s)
+
+    for i in range(0, longitud):
+        if s[i] not in lista_nueva:
+            lista_nueva.append(s[i])
+    return lista_nueva
+
+#print(eliminar_repetidos("abcddfreet"))
+
 # Ejercicio 3
 def aprobado(notas:list[int]) -> int:
     longitud:int = len(notas)
@@ -269,18 +281,37 @@ def aprobado(notas:list[int]) -> int:
 # print(aprobado([1,4,7,8,2]))
 # print(aprobado([4,4,4,4,4]))
 
+# Ejercicio 4
+# 4.1
+def estudiantes() -> list[str]:
+    nombre = input("Ingrese el nombre del estudiante o 'Listo' para finalizar: ")
+    lista_estudiantes:list[str] = []
+    while(nombre != "Listo"):
+        lista_estudiantes.append(nombre)
+        nombre = input("Ingrese el nombre del estudiante o 'Listo' para finalizar: ")
+    return lista_estudiantes
+#print(estudiantes())
 
-# Ejercicio 2.6
-def eliminar_repetidos(s:list[chr]) -> list[chr]:
-    lista_nueva:list[chr] = []
-    longitud:int = len(s)
+# 4.2
+def historial_monedero_electronico() -> list[tuple[str, int]]:
+    monedero:list[tuple[str, int]] = []
+    print("Menu Monedero")
+    print("'C' - Cargar creditos\n'D' - Descontar creditos\n'X' - Salir")
+    accion = input("Ingrese la letra correspondiente a la accion que desea realizar: ")
 
-    for i in range(0, longitud):
-        if s[i] not in lista_nueva:
-            lista_nueva.append(s[i])
-    return lista_nueva
+    while(accion != "X"):
+        if accion == "C":
+            monto = int(input("Ingrese el monto a cargar: "))
+            monedero.append((accion,monto))
+        elif accion == "D":
+            monto = int(input("Ingrese el monto a descontar: "))
+            monedero.append((accion,monto))
+        print("\nMenu Monedero")
+        print("'C' - Cargar creditos\n'D' - Descontar creditos\n'X' - Salir")
+        accion = input("Ingrese la letra correspondiente a la accion que desea realizar: ")
+    return monedero
 
-#print(eliminar_repetidos("abcddfreet"))
+#print(historial_monedero_electronico())
 
 # Ejercicio 5.2
 def pertenece_a_cada_uno_version_2(s:list[list[int]], e:int, res:list[bool]) -> None:
