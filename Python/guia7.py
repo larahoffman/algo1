@@ -227,6 +227,40 @@ def reemplaza_vocales(s:list[chr]) -> list[chr]:
 
 #print(reemplaza_vocales(['a', 'b', 'c', 'd', 'e']))
 
+# Ejercicio 2.5
+def da_vuelta_str(s:list[chr]) -> list[chr]:
+    s_reverso:list[chr] = []
+    longitud:int = len(s)
+
+    for i in range(0,longitud):
+        s_reverso += s[longitud - i - 1]
+    return s_reverso
+
+#print(da_vuelta_str(['a', 'b', 'c', 'd']))
+
+# para numeros
+def reverso(s:list[int]) -> list[int]:
+    s_reverso:list[int] = []
+    longitud:int = len(s)
+
+    for i in range(0,longitud):
+        s_reverso.append(s[longitud - i - 1])
+    return s_reverso
+
+#print(reverso([1,2,3,4]))
+
+# Ejercicio 2.6
+def eliminar_repetidos(s:list[chr]) -> list[chr]:
+    lista_nueva:list[chr] = []
+    longitud:int = len(s)
+
+    for i in range(0, longitud):
+        if s[i] not in lista_nueva:
+            lista_nueva.append(s[i])
+    return lista_nueva
+
+#print(eliminar_repetidos("abcddfreet"))
+
 # Ejercicio 5.2
 def pertenece_a_cada_uno_version_2(s:list[list[int]], e:int, res:list[bool]) -> None:
     res.clear() # recomendado hacer siempre para variables de tipo out
