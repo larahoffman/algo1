@@ -1,22 +1,76 @@
-# Clase 29-05
+# Archivos
+import typing
+
+# Ejercicio 1.1
+def contar_lineas(nombre_archivo:str) -> int:
+    archivo:typing.IO = open(nombre_archivo, "r")
+    lineas:list[str] = archivo.readlines()
+
+    archivo.close() # liberamos memoria
+
+    return len(lineas)
+
+#print(contar_lineas("pepe.txt"))
+
+# Ejercicio 2
+def clonar_sin_comentarios(nombre_archivo:str):
+    archivo:typing.IO = open(nombre_archivo, "r")
+    archivo_clonado:typing.IO = open("pepe-clonado.txt", "w")
+
+    lineas:list[str] = archivo.readlines()
+
+    for linea in lineas:
+        if not (es_comentario(linea)):
+            archivo_clonado.write(linea)
+    
+    archivo.close()
+    archivo_clonado.close()
+
+def es_comentario(linea:str) -> bool:
+    res:bool = False
+
+    for e in linea:
+        if e == "#":
+            res = True
+    return res
+
+#print(es_comentario("elpepe"))
+#print(es_comentario("#jujuju"))
+#print(es_comentario("                 #"))
+#clonar_sin_comentarios("pepe.txt")
 
 # Pilas
 from queue import LifoQueue as Pila
 
 p = Pila()
-p.put(1) #apilar
-elemento = p.get() #desapila el último elemento en ingresar (devuelve el elemento)
-p.empty() #vacía - devuelve un valor booleano
+p.put(1)
+p.put(2) # apilar
+p.get() # desapila el último elemento en ingresar (y devuelve el elemento)
+p.empty() # ve si la pila está vacía o no - devuelve un valor booleano
 
-##########################################
+import random
 
-def contar_elementos_pila(p: Pila) -> int:
+# Ejercicio 8
+def generar_nros_al_azar(cantidad:int, desde:int, hasta:int) -> Pila:
+    p = Pila()
+
+    for _ in range(cantidad):
+        valor:int = random.randint(desde,hasta)
+        p.put(valor)
+
+    return p
+
+# p = generar_nros_al_azar(3,20,60)
+# print(p.queue)
+
+# Ejercicio 9
+def cantidad_elementos(p: Pila) -> int:
     cantidad:int = 0
 
     paux = copiar_pila(p)
 
     while(not paux.empty()):
-        elem = paux.get()
+        paux.get()
         cantidad += 1
     
     return cantidad
@@ -41,23 +95,8 @@ mi_pila.put(8)
 mi_pila.put(8)
 mi_pila.put(5)
 
-#print(contar_elementos_pila(mi_pila)) # el valor se pasa por referencia
-#print(contar_elementos_pila(mi_pila))
-
-import random
-
-# Ejercicio 8
-def generar_nros_al_azar(cantidad:int, desde:int, hasta:int) -> Pila:
-    p = Pila()
-
-    for k in range(cantidad):
-        valor:int = random.randint(desde,hasta)
-        p.put(valor)
-
-    return p
-
-p = generar_nros_al_azar(3,20,60)
-#print(p.queue)
+#print(cantidad_elementos(mi_pila)) # el valor se pasa por referencia
+#print(cantidad_elementos(mi_pila))
 
 # Ejercicio 10
 def buscar_el_maximo(p:Pila) -> int:
@@ -79,46 +118,40 @@ mi_pila.put(8)
 mi_pila.put(5)
 #print(buscar_el_maximo(mi_pila))
 
-# Archivos
-import typing
+# Ejercicio 11
+def esta_bien_balanceada(s:str) -> bool:
+    pass
 
-# Ejercicio 1.1
-def contar_lineas(nombre_archivo:str) -> int:
-    archivo:typing.IO = open(nombre_archivo, "r")
-    lineas:[str] = archivo.readlines()
+# Ejercicio 12
+def evaluar_expresion(s:str) -> float:
+    p = Pila()
+    res = Pila()
+    operandos:str = "+-*/"
+    for char in s:
+        if char != " " and char not in operandos:
+            p.put(char)
+        elif char != " " and char in operandos:
+            numero1 = float(p.get())
+            numero2 = float(p.get())
 
-    archivo.close() # liberamos memoria
+            if char == "+":
+                suma:float = numero1 + numero2
+                p.put(suma)
+            elif char == "-":
+                resta:float = numero2 - numero1
+                p.put(resta)
+            elif char == "*":
+                multiplicacion:float = numero1 * numero2
+                p.put(multiplicacion)
+            elif char == "/":
+                division:float = numero1 / numero2
+                p.put(division)
+    return p.get()
 
-    return len(lineas)
+expresion = "3 4 + 5 * 2 -"
+print(evaluar_expresion(expresion))
 
-#print(contar_lineas("pepe.txt"))
 
-# Ejercicio 2
-def clonar_sin_comentarios(nombre_archivo:str):
-    archivo:typing.IO = open(nombre_archivo, "r")
-    archivo_clonado:typing.IO = open("pepe-clonado.txt", "w")
-
-    lineas:[str] = archivo.readlines()
-
-    for linea in lineas:
-        if not (es_comentario(linea)):
-            archivo_clonado.write(linea)
-    
-    archivo.close()
-    archivo_clonado.close()
-
-def es_comentario(linea:str) -> bool:
-    res:bool = False
-
-    for e in linea:
-        if e == "#":
-            res = True
-    return res
-
-#print(es_comentario("elpepe"))
-#print(es_comentario("#jujuju"))
-#print(es_comentario("                 #"))
-clonar_sin_comentarios("pepe.txt")
 
 #########################n
 from queue import Queue as Cola
@@ -176,7 +209,7 @@ def jugar_carton_de_bingo(carton: list[int], bolillero: Cola[int]) -> int:
 
     return jugadas
 
-print(jugar_carton_de_bingo([1,5,7,12,65,77,2,90,54,66,68,34], armar_secuencia_de_bingo()))
+#print(jugar_carton_de_bingo([1,5,7,12,65,77,2,90,54,66,68,34], armar_secuencia_de_bingo()))
 
 # Diccionarios #
 
@@ -185,7 +218,7 @@ def clonar_sin_espacios(nombre_archivo:str):
     archivo:typing.IO = open(nombre_archivo, "r")
     archivo_clonado:typing.IO = open("pepe-sin-espacios.txt", "w")
 
-    lineas:[str] = archivo.readlines()
+    lineas:list[str] = archivo.readlines()
 
     for linea in lineas:
         if not (es_espacio(linea)):
@@ -218,4 +251,4 @@ def agrupar_por_longitud(nombre_archivo:str) -> dict:
     archivo.close()
     return d
 
-print(agrupar_por_longitud("pepe.txt"))
+#print(agrupar_por_longitud("pepe.txt"))
