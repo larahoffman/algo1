@@ -314,7 +314,7 @@ def atencion_a_clientes(c:Cola[(str, int, bool, bool)]) -> Cola[(str, int, bool,
     while(not cola_resto.empty()):
         otro_cliente = cola_resto.get()
         resultado.put(otro_cliente)
-    return resultado.queue
+    return resultado
 
 """cola = Cola()
 cola.put(("Preferencial 1", 43820465, True, False))
@@ -322,7 +322,7 @@ cola.put(("Prioritario 1", 43820465, True, True))
 cola.put(("Prioritario 2", 43820465, False, True))
 cola.put(("Random", 43820465, False, False))
 cola.put(("Preferencial 2", 43820465, True, False))
-print(atencion_a_clientes(cola))"""
+print(atencion_a_clientes(cola).queue)"""
 
 
 # Diccionarios #
