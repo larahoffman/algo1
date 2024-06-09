@@ -125,7 +125,6 @@ def esta_bien_balanceada(s:str) -> bool:
 # Ejercicio 12
 def evaluar_expresion(s:str) -> float:
     p = Pila()
-    res = Pila()
     operandos:str = "+-*/"
     for char in s:
         if char != " " and char not in operandos:
@@ -149,9 +148,7 @@ def evaluar_expresion(s:str) -> float:
     return p.get()
 
 expresion = "3 4 + 5 * 2 -"
-print(evaluar_expresion(expresion))
-
-
+#print(evaluar_expresion(expresion))
 
 #########################n
 from queue import Queue as Cola
@@ -166,8 +163,66 @@ def generar_nros_al_azar(cantidad: int, desde:int, hasta:int) -> Cola:
 
     return c
 
-c = generar_nros_al_azar(4, 43, 80)
+#c = generar_nros_al_azar(4, 43, 80)
 #print(f"Cola: {c.queue}")
+
+# Ejercicio 14
+def cantidad_elementos(c:Cola) -> int:
+    colaaux = Cola()
+    cantidad:int = 0
+    while(not c.empty()):
+        elemento = c.get()
+        colaaux.put(elemento)
+        cantidad += 1
+    while(not colaaux.empty()):
+        elemento = colaaux.get()
+        c.put(elemento)
+    return cantidad
+
+# cola = Cola()
+# cola.put(1)
+# cola.put(4)
+# cola.put(6)
+# cola.put(2)
+# print(cantidad_elementos(cola))
+# print(cola.queue) # chequeando que la cola siga igual (es de tipo IN)
+
+# Ejercicio 15
+def buscar_el_maximo(c:Cola[int]) -> int:
+    colaaux = Cola()
+    maximo:int = c.get()
+    colaaux.put(maximo)
+    # claramente es mejor usar la funcion auxiliar copiar_cola()
+    while(not c.empty()):
+        numero = c.get()
+        colaaux.put(numero)
+        if numero > maximo:
+            maximo = numero
+    while(not colaaux.empty()):
+        numero = colaaux.get()
+        c.put(numero)
+    return maximo
+
+# cola = Cola()
+# cola.put(1)
+# cola.put(4)
+# cola.put(2)
+# cola.put(7)
+# print(buscar_el_maximo(cola))
+# print(cola.queue) # chequeo
+
+def copiar_cola(c: Cola) -> Cola:
+    colaaux = Cola()
+    res = Cola()
+
+    while(not c.empty()):
+        elem = c.get()
+        colaaux.put(elem)
+    while(not colaaux.empty()): # se va reconstruyendo
+        elem = colaaux.get()
+        c.put(elem)
+        res.put(elem)
+    return res
 
 # Ejercicio 16. Un cartón de bingo contiene 12 números al azar en el rango [0, 99].
 # 16.1.
@@ -210,6 +265,65 @@ def jugar_carton_de_bingo(carton: list[int], bolillero: Cola[int]) -> int:
     return jugadas
 
 #print(jugar_carton_de_bingo([1,5,7,12,65,77,2,90,54,66,68,34], armar_secuencia_de_bingo()))
+
+# Ejercicio 17 
+# Cola: donde se van almacenando los pedidos de atencion. Cola[(prioridad, nombre_paciente, especialidad_medica)]
+# Devuelve la cantidad de pacientes de la cola que tienen prioridad en el rango [1, 3].
+def n_pacientes_urgentes(c:Cola[(int, str, str)]) -> int:
+    colaaux = copiar_cola(c)
+    cantidad:int = 0
+    while(not colaaux.empty()):
+        pedido:tuple = colaaux.get()
+        if pedido[0] in range(1,4):
+            cantidad +=1
+    return cantidad
+
+'''cola = Cola()
+cola.put((3, "Pepe", "Traumatologia"))
+cola.put((8, "Luciana", "Dermatologia"))
+cola.put((1, "Anastasia", "Cardiologia"))
+cola.put((5, "Ana", "Traumatologia"))
+print(n_pacientes_urgentes(cola))'''
+
+# Ejercicio 18
+# Cola: [(NombreYApellido, DNI, Preferencial o no, Prioridad o no)]
+# La atencion a los clientes se da por el siguiente orden: primero las personas que tienen prioridad, luego las que tienen cuenta
+# bancaria preferencial y por ultimo el resto. Dentro de cada subgrupo de clientes, se respeta el orden de llegada.
+def atencion_a_clientes(c:Cola[(str, int, bool, bool)]) -> Cola[(str, int, bool, bool)]:
+    colaaux = copiar_cola(c)
+    cola_prioridad = Cola()
+    cola_preferencial = Cola()
+    cola_resto = Cola()
+
+    while(not colaaux.empty()):
+        cliente:tuple = colaaux.get()
+
+        if cliente[3] == True:
+            cola_prioridad.put(cliente)
+        elif cliente[2] == True:
+            cola_preferencial.put(cliente)
+        else:
+            cola_resto.put(cliente)
+    resultado = Cola()
+    while(not cola_prioridad.empty()):
+        cliente_prioritario = cola_prioridad.get()
+        resultado.put(cliente_prioritario)
+    while(not cola_preferencial.empty()):
+        cliente_preferencial = cola_preferencial.get()
+        resultado.put(cliente_preferencial)
+    while(not cola_resto.empty()):
+        otro_cliente = cola_resto.get()
+        resultado.put(otro_cliente)
+    return resultado.queue
+
+"""cola = Cola()
+cola.put(("Preferencial 1", 43820465, True, False))
+cola.put(("Prioritario 1", 43820465, True, True))
+cola.put(("Prioritario 2", 43820465, False, True))
+cola.put(("Random", 43820465, False, False))
+cola.put(("Preferencial 2", 43820465, True, False))
+print(atencion_a_clientes(cola))"""
+
 
 # Diccionarios #
 
