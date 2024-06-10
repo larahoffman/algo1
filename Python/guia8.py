@@ -366,3 +366,68 @@ def agrupar_por_longitud(nombre_archivo:str) -> dict:
     return d
 
 #print(agrupar_por_longitud("pepe.txt"))
+
+# Faltan ejs 20 y 21
+
+# Ejercicio 22
+
+historiales: dict = {}
+historiales_aux: dict = {}
+
+def visitar_sitio(historiales: dict, usuario: str, sitio: str):
+    historial: Pila = Pila()
+    historial.put(sitio)
+    historiales[usuario] = historial
+
+
+def navegar_atras(historiales: dict, usuario: str):
+    historial: Pila = historiales[usuario]
+    x = historial.get()
+    historiales_aux[usuario] = x
+    return x
+
+"""visitar_sitio(historiales, "usuario1", "www.google.com")
+visitar_sitio(historiales, "usuario1", "www.openai.com")
+visitar_sitio(historiales, "usuario1", "www.github.com")
+
+print(navegar_atras(historiales, "usuario1"))  # Debería regresar "www.github.com"
+print(navegar_atras(historiales, "usuario1"))  # Debería regresar "www.openai.com"
+print(navegar_atras(historiales, "usuario1"))  # Debería regresar "www.google.com"
+
+# no esta bien """
+
+# Ejercicio 23
+# inventario:dict = {"nombre_producto": info}
+# info:dict = {"precio": 50.5, "cantidad": 50}
+
+# 23.1
+def agregar_producto(inventario:dict, nombre:str, precio:float, cantidad:int):
+    info_adicional:dict = {"precio":precio, "cantidad": cantidad}
+    inventario[nombre] = info_adicional
+
+# 23.2
+def actualizar_stock(inventario:dict, nombre:str, cantidad:int):
+    info_adicional:dict = inventario[nombre]
+    info_adicional["cantidad"] = cantidad
+
+# 23.3
+def actualizar_precios(inventario:dict, nombre:str, precio:float):
+    info_adicional:dict = inventario[nombre]
+    info_adicional["precio"] = precio
+
+# 23.4
+def calcular_valor_inventario(inventario:dict) -> float:
+    valor_total:float = 0.0
+    for info_adicional in inventario.values():
+        cantidad:int = info_adicional["cantidad"]
+        precio:float = info_adicional["precio"]
+        valor:float = cantidad * precio
+        valor_total += valor
+    return valor_total
+
+inventario = {}
+agregar_producto(inventario, "Camisa", 20.0, 50)
+agregar_producto(inventario, "Pantalon", 30.0, 30)
+actualizar_stock(inventario, "Camisa", 10)
+valor_total = calcular_valor_inventario(inventario)
+print("Valor total del inventario:", valor_total)
