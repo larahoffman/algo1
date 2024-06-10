@@ -142,9 +142,9 @@ def acomodar2(s1: list) -> list: #esta parece mejor
             res.append(boleta_lla)
     return res
 
-s = ["LLA", "UP", "LLA", "LLA", "UP"]
-print(acomodar(s))
-print(acomodar2(s))
+# s = ["LLA", "UP", "LLA", "LLA", "UP"]
+# print(acomodar(s))
+# print(acomodar2(s))
 
 # Ej 2
 def pos_umbral(s:list[int], u:int) -> int:
@@ -170,7 +170,63 @@ def pos_umbral2(s: list, u: int) -> int:
         i += 1
     return res
 
-s = [1,-2,0,5,-7,3]
-u = 5
-print(pos_umbral(s, u))
-print(pos_umbral2(s, u))
+# s = [1,-2,0,5,-7,3]
+# u = 5
+# print(pos_umbral(s, u))
+# print(pos_umbral2(s, u))
+
+# Ej 3 - Matriz de m columnas (m par y m >= 2)
+def columnas_repetidas(matriz:list[list[int]]) -> bool:
+    lista_primera_mitad:list[int] = []
+    lista_segunda_mitad:list[int] = []
+    numero_filas:int = len(matriz)
+    numero_columnas:int = len(matriz[0])
+
+    for fila in range(numero_filas):
+        for columna in range(numero_columnas // 2):
+            lista_primera_mitad.append(matriz[fila][columna])
+        for columna in range(numero_columnas // 2, numero_columnas):
+            lista_segunda_mitad.append(matriz[fila][columna])
+    return lista_primera_mitad == lista_segunda_mitad
+
+# mas ordenado
+def columnas_repetidas2(m: list) -> bool:
+    res: bool = True
+    for elem in m:
+        if not columnas_simetricas(elem):
+            res = False
+            return res
+    return res
+
+
+def columnas_simetricas(s: list) -> bool:
+    primera_mitad: list = []
+    segundo_mitad: list = []
+    for i in range(len(s) // 2):
+        primera_mitad.append(s[i])
+    for j in range(len(s) // 2, len(s)):
+        segundo_mitad.append(s[j])
+    return primera_mitad == segundo_mitad
+
+# m = [[1,2,1,2],[-5,6,-5,6],[0,1,0,1]]
+# print(columnas_repetidas(m))
+
+# Ej 4
+# Ejemplo: anio = 2023, posiciones_naciones = ["arg", "aus", "nz", "sud"]
+# torneos = {2023: ["arg", "aus", "nz", "sud"]}
+# Tip: para crear una lista con tantos ceros como naciones se puede utilizar: lista_ceros = [0]*len(naciones)
+def cuenta_posiciones_por_nacion(naciones:list[str], torneos:dict[int, list[str]]) -> dict[str, list[int]]:
+    resultado:dict = {}
+    cantidad_naciones:int = len(naciones)
+    for nacion in naciones:
+        resultado[nacion] = [0] * cantidad_naciones
+
+    for anio in torneos.keys():
+        naciones_torneo:list = torneos[anio]
+        for i in range(len(naciones_torneo)):
+            resultado[naciones_torneo[i]][i] +=1
+    return resultado
+
+# naciones= ["arg", "aus", "nz", "sud"]
+# torneos= {2023:["nz", "sud", "arg", "aus"], 2022:["nz", "sud", "aus", "arg"]}
+# print(cuenta_posiciones_por_nacion(naciones, torneos))
